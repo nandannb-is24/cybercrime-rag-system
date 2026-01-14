@@ -1,110 +1,387 @@
-⚖️ CyberCrime Legal Assistant (RAG System)
+# ⚖️ CyberCrime Legal Assistant
 
-A Retrieval-Augmented Generation (RAG) based legal assistant that provides grounded cybercrime-related legal guidance using real case data, vector search, and a Large Language Model (LLM).
-
-The system retrieves relevant cybercrime cases from a vector database and generates clean, explainable legal responses with citations.
-
-Note: The dataset used in this project is compiled from publicly available cybercrime case summaries for academic purposes.
+<div align="center">
 
 
 
-
-🚀 Features
-
-📚 Vector Search (ChromaDB) for cybercrime cases
-
-🧠 LLM-powered legal reasoning using Groq (LLaMA 3.1)
-
-🔍 Context-aware answers grounded in real data
-
-🧾 Transparent citations (case-based evidence)
-
-🖥️ Streamlit-based UI
-
-🧩 Clean modular architecture (ingestion, retrieval, generation, UI)
+**An AI-powered legal assistant providing grounded cybercrime guidance using RAG technology**
 
 
+</div>
 
+---
 
-🏗️ System Architecture
+## 📋 Table of Contents
 
-User Query
+- [Overview](#overview)
+- [Features](#features)
+- [System Architecture](#system-architecture)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Configuration](#configuration)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [API Reference](#api-reference)
+- [Dataset](#dataset)
+- [Acknowledgments](#acknowledgments)
 
-        ↓
+---
 
-Streamlit UI (app.py)
+## 🎯 Overview
 
-        ↓
+CyberCrime Legal Assistant is a **Retrieval-Augmented Generation (RAG)** system that provides accurate, grounded legal guidance on cybercrime cases. Unlike traditional chatbots, this system retrieves relevant case law from a vector database and generates responses backed by real legal precedents.
 
-RAG Pipeline (rag_pipeline.py)
+### Why RAG?
 
-        ↓
+- **Grounded Responses**: Answers are based on actual case data, not hallucinations
+- **Transparent Citations**: Every response includes source case references
+- **Up-to-date Information**: Easy to update the knowledge base with new cases
+- **Domain-Specific Accuracy**: Specialized for cybercrime legal queries
 
-Vector Search (ChromaDB)
+> **Note**: This system is for educational and informational purposes only. Always consult a qualified legal professional for official legal advice.
 
-        ↓
-   
-Top-K Relevant Cases
+---
 
-        ↓
+## ✨ Features
 
-Groq LLM (LLaMA 3.1)
+### Core Capabilities
 
-        ↓
+- 🔍 **Semantic Search**: ChromaDB-powered vector search for finding relevant cases
+- 🧠 **LLM Reasoning**: Groq (LLaMA 3.1) for natural language generation
+- 📚 **Case Citations**: Transparent source attribution with case references
+- ⚡ **Fast Inference**: Groq's infrastructure ensures sub-second response times
+- 🎨 **Modern UI**: React-based chat interface with dark mode support
 
-Generated Legal Answer + Citations
+### User Experience
 
+- 💬 Real-time chat interface
+- 📝 Context-aware responses
+- 🌓 Dark/Light mode toggle
+- 📱 Responsive design
+- 💾 Chat history persistence
 
+---
 
+## 🏗️ System Architecture
+
+```
+┌─────────────────┐
+│   User Query    │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  React Frontend │
+│   (Chat UI)     │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  FastAPI/Flask  │
+│   Backend API   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  RAG Pipeline   │
+│  rag_pipeline.py│
+└────────┬────────┘
+         │
+    ┌────┴────┐
+    ▼         ▼
+┌────────┐ ┌──────┐
+│ChromaDB│ │ Groq │
+│Vector  │ │ LLM  │
+│  DB    │ │      │
+└────────┘ └──────┘
+    │         │
+    └────┬────┘
+         ▼
+  ┌──────────────┐
+  │   Response   │
+  │ + Citations  │
+  └──────────────┘
+```
+
+### Pipeline Flow
+
+1. **User Input**: Query submitted via React chat interface
+2. **Embedding**: Query converted to vector embedding
+3. **Retrieval**: ChromaDB finds top-K most relevant cases
+4. **Context Formation**: Retrieved cases formatted as context
+5. **Generation**: Groq LLM generates response with citations
+6. **Display**: Answer shown in UI with source references
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Python 3.11+** - Core language
+- **ChromaDB** - Vector database for semantic search
+- **Groq API** - Ultra-fast LLM inference
+- **LLaMA 3.1** - Large language model
+- **FastAPI/Flask** - REST API framework
+- **SentenceTransformers** - Text embeddings
+
+### Frontend
+- **React 18+** - UI framework
+- **Vite** - Build tool
+- **Tailwind CSS** - Styling
+- **Lucide React** - Icons
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.11 or higher
+- Node.js 18+ and npm
+- Git
+- Groq API key ([Get one here](https://console.groq.com))
+
+### Installation
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/yourusername/legalchatbot.git
+cd legalchatbot
+```
+
+#### 2. Backend Setup
+
+```bash
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# On Windows:
+.venv\Scripts\activate
+# On macOS/Linux:
+source .venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+#### 3. Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+#### 4. Environment Configuration
+
+Create a `.env` file in the root directory:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
+CHROMA_DB_PATH=./cyber_crime_db
+MODEL_NAME=llama-3.1-70b-versatile
+```
+
+#### 5. Data Ingestion
+
+```bash
+# Run from project root
+python backend/app/rag/ingest.py
+```
+
+This will:
+- Load cases from `data/cases.json`
+- Generate embeddings
+- Store vectors in ChromaDB
+
+---
+
+## 💻 Usage
+
+### Development Mode
+
+**Terminal 1 - Backend:**
+```bash
+# Activate virtual environment
+source .venv/bin/activate  # or .venv\Scripts\activate on Windows
+
+# Run backend (from root)
+cd backend
+python main.py
+```
+
+**Terminal 2 - Frontend:**
+```bash
+cd frontend
+npm run dev
+```
+
+Visit `http://localhost:5173` in your browser.
+
+### Production Build
+
+```bash
+# Frontend
+cd frontend
+npm run build
+
+# Serve with backend
+cd ../backend
+python main.py --production
+```
+
+### CLI Testing
+
+Test retrieval only:
+```bash
+python backend/app/rag/query.py "What are the penalties for UPI fraud?"
+```
+
+Test full RAG pipeline:
+```bash
+python backend/app/rag/rag_pipeline.py "Someone hacked my Instagram account"
+```
+
+---
+
+## 📁 Project Structure
+
+```
 LEGALCHATBOT/
-
-
-├── ingest.py              (Data ingestion into ChromaDB)
-
-├── query.py               (Retrieval-only CLI testing)
-
-├── llm.py                 (Groq LLM integration)
-
-├── rag_pipeline.py        (Retrieval + Generation logic)
-
-├── app.py                 (Streamlit UI)
-
+│
+├── backend/
+│   ├── app/
+│   │   ├── rag/
+│   │   │   ├── __init__.py
+│   │   │   ├── glue.py              # ChromaDB connection
+│   │   │   ├── ingest.py            # Data ingestion pipeline
+│   │   │   ├── llm.py               # Groq LLM integration
+│   │   │   ├── query.py             # Retrieval module
+│   │   │   └── rag_pipeline.py      # Main RAG logic
+│   │   ├── __init__.py
+│   │   └── main.py                  # FastAPI/Flask app
+│   ├── cyber_crime_db/              # ChromaDB storage
+│   └── chroma_db/
+│
 ├── data/
-
-      └── cases.json         (Cybercrime case dataset)
-
-
-├── cyber_crime_db/        (Persistent ChromaDB storage)
-
-├── .venv/                 (Virtual environment)
-
+│   └── cases.json                   # Cybercrime case dataset
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   │   └── Client.js            # API client
+│   │   ├── components/
+│   │   │   └── Message.jsx          # Chat message component
+│   │   ├── pages/
+│   │   │   └── Chat.jsx             # Main chat page
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│   ├── public/
+│   ├── index.html
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .env                             # Environment variables
+├── .gitignore
+├── requirements.txt                 # Python dependencies
 └── README.md
+```
+
+---
+
+## 🔌 API Reference
+
+### Base URL
+```
+http://localhost:5000/api
+```
+
+### Endpoints
+
+#### POST `/ask`
+Get legal guidance on a cybercrime query.
+
+**Request:**
+```json
+{
+  "question": "I lost money in a UPI fraud. What should I do?",
+  "top_k": 5
+}
+```
+
+**Response:**
+```json
+{
+  "answer": "Based on relevant case law, you should immediately...",
+  "sources": [
+    "IPC Section 420 - Cheating and Dishonesty",
+    "IT Act 2000 Section 66D - Punishment for cheating by personation"
+  ],
+  "context_used": 5
+}
+```
+
+#### GET `/health`
+Check API health status.
+
+**Response:**
+```json
+{
+  "status": "healthy",
+  "database": "connected",
+  "model": "llama-3.1-70b-versatile"
+}
+```
+
+---
+
+## 📊 Dataset
+
+The system uses a curated dataset of cybercrime cases stored in `data/cases.json`.
+
+### Schema
+
+```json
+{
+  "case_id": "CC001",
+  "title": "UPI Fraud Case",
+  "category": "financial_fraud",
+  "description": "Victim lost ₹50,000 through unauthorized UPI transaction...",
+  "relevant_laws": ["IPC 420", "IT Act 66D"],
+  "verdict": "Guilty - 2 years imprisonment + ₹1,00,000 fine",
+  "precedent": "Similar cases should report to cybercrime cell within 24 hours"
+}
+```
+
+### Data Sources
+
+> **Important**: The dataset is compiled from publicly available cybercrime case summaries for educational and research purposes only.
 
 
+### Coding Standards
 
-⚙️ Tech Stack
-
-Python 3.11
-
-ChromaDB – Vector database
-
-Groq API – Ultra-fast LLM inference
-
-LLaMA 3.1 – Large Language Model
-
-Streamlit – Web UI
-
-SentenceTransformers / Default Embeddings
+- Follow PEP 8 for Python code
+- Use ESLint/Prettier for JavaScript
+- Write meaningful commit messages
+- Add tests for new features
+- Update documentation
 
 
-📈Future Improvements
+##  Acknowledgments
 
-🔐 Authentication & user sessions
+- **ChromaDB Team** - For the excellent vector database
+- **Groq** - For providing fast LLM inference
+- **Meta AI** - For the LLaMA model
+- **Indian Legal Community** - For publicly available case data
 
-🌐 REST API (FastAPI)
 
-📊 Confidence scoring
+<div align="center">
 
-🧠 Conversation memory
+**[⬆ Back to Top](#-cybercrime-legal-assistant)**
 
-🚀 Cloud deployment
+Made with ❤️ for legal tech innovation
+
+</div>
