@@ -77,46 +77,43 @@ The frontend provides a clean, intuitive chat-based interface that enables users
 
 ```
 frontend/
-│
-├── src/
-│   ├── api/
-│   │   └── Client.js              # API client configuration & methods
-│   │
-│   ├── components/
-│   │   ├── Message.jsx            # Chat message component
-│   │   ├── Sidebar.jsx            # Navigation sidebar
-│   │   ├── Header.jsx             # App header
-│   │   └── LoadingSpinner.jsx    # Loading indicator
-│   │
-│   ├── pages/
-│   │   ├── Chat.jsx               # Main chat interface
-│   │   └── Landing.jsx               # Landing page
-│   │          
-│   │
-│   ├── hooks/
-│   │   ├── useChat.js             # Chat state management
-│   │   └── useTheme.js            # Theme management
-│   │
-│   ├── utils/
-│   │   ├── storage.js             # LocalStorage helpers
-│   │   └── constants.js           # App constants
-│   │
-│   ├── styles/
-│   │   └── index.css              # Global styles & Tailwind imports
-│   │
-│   ├── App.jsx                    # Main app component & routing
-│   └── main.jsx                   # App entry point
-│
-├── public/
-│   ├── favicon.ico
-│   └── logo.svg
-│
-├── index.html                     # HTML template
-├── package.json                   # Dependencies & scripts
-├── vite.config.js                 # Vite configuration
-├── tailwind.config.js             # Tailwind configuration
-├── postcss.config.js              # PostCSS configuration
-└── .env.example                   # Environment variables template
+   ├── node_modules/
+   ├── public/
+   │      └── law.svg.svg              # Law icon/logo
+   ├── src/
+   │   ├── api/
+   │   │   └── Client.js
+   │   ├── assets/
+   │   │   └── react.svg
+   │   ├── components/
+   │   │   ├── Background.jsx
+   │   │   ├── BoundaryDemo.jsx
+   │   │   ├── ComparisonTable.jsx
+   │   │   ├── ExampleQueries.jsx
+   │   │   ├── Message.jsx          # Chat message component
+   │   │   ├── RagFlow.jsx
+   │   │   ├── ScrollReveal.jsx
+   │   │   ├── SourceCard.jsx
+   │   │   ├── SourcePreview.jsx
+   │   │   └── StatsCard.jsx
+   │   ├── pages/
+   │   │   ├── Chat.jsx             # Main chat page
+   │   │   └── landing.jsx          # Landing page
+   │   ├── App.css
+   │   ├── App.jsx
+   │   ├── index.css
+   │   └── main.jsx
+   ├── .gitignore
+   ├── components.json
+   ├── eslint.config.js
+   ├── index.html
+   ├── jsconfig.json
+   ├── package-lock.json
+   ├── package.json
+   ├── postcss.config.js
+   ├── README.md
+   ├── tailwind.config.js
+   └── vite.config.js
 
 ```
 
