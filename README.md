@@ -254,39 +254,70 @@ LEGALCHATBOT/
 ├── backend/
 │   ├── app/
 │   │   ├── rag/
+│   │   │   ├── __pycache__/
 │   │   │   ├── __init__.py
 │   │   │   ├── glue.py              # ChromaDB connection
 │   │   │   ├── ingest.py            # Data ingestion pipeline
 │   │   │   ├── llm.py               # Groq LLM integration
-│   │   │   ├── query.py             # Retrieval module
-│   │   │   └── rag_pipeline.py      # Main RAG logic
+│   │   │   └── query.py             # Retrieval module
+│   │   ├── __pycache__/
 │   │   ├── __init__.py
 │   │   └── main.py                  # FastAPI/Flask app
-│   ├── cyber_crime_db/              # ChromaDB storage
-│   └── chroma_db/
+│   ├── chroma_db/
+│   │   ├── 9daf0607-df43-4f00-b74a-bee8515933f0/
+│   │   └── chroma.sqlite3
+│   ├── cyber_crime_db/
+│   │   ├── 5aa79a53-ae29-48d7-8a63-45cdfa1ca21c/
+│   │   └── chroma.sqlite3
+│   └── .venv/                       # Virtual environment
 │
 ├── data/
 │   └── cases.json                   # Cybercrime case dataset
 │
 ├── frontend/
+│   ├── node_modules/
+│   ├── public/
+│   │   └── law.svg.svg              # Law icon/logo
 │   ├── src/
 │   │   ├── api/
-│   │   │   └── Client.js            # API client
+│   │   │   └── Client.js
+│   │   ├── assets/
+│   │   │   └── react.svg
 │   │   ├── components/
-│   │   │   └── Message.jsx          # Chat message component
+│   │   │   ├── Background.jsx
+│   │   │   ├── BoundaryDemo.jsx
+│   │   │   ├── ComparisonTable.jsx
+│   │   │   ├── ExampleQueries.jsx
+│   │   │   ├── Message.jsx          # Chat message component
+│   │   │   ├── RagFlow.jsx
+│   │   │   ├── ScrollReveal.jsx
+│   │   │   ├── SourceCard.jsx
+│   │   │   ├── SourcePreview.jsx
+│   │   │   └── StatsCard.jsx
 │   │   ├── pages/
-│   │   │   └── Chat.jsx             # Main chat page
+│   │   │   ├── Chat.jsx             # Main chat page
+│   │   │   └── landing.jsx          # Landing page
+│   │   ├── App.css
 │   │   ├── App.jsx
+│   │   ├── index.css
 │   │   └── main.jsx
-│   ├── public/
+│   ├── .gitignore
+│   ├── components.json
+│   ├── eslint.config.js
 │   ├── index.html
+│   ├── jsconfig.json
+│   ├── package-lock.json
 │   ├── package.json
+│   ├── postcss.config.js
+│   ├── README.md
+│   ├── tailwind.config.js
 │   └── vite.config.js
 │
-├── .env                             # Environment variables
+├── __pycache__/
+├── .venv/                           # Virtual environment
 ├── .gitignore
-├── requirements.txt                 # Python dependencies
-└── README.md
+├── README.md
+└── requirements.txt                 # Python dependencies
 ```
 
 ---
@@ -379,8 +410,7 @@ The system uses a curated dataset of cybercrime cases stored in `data/cases.json
 
 <div align="center">
 
-**[⬆ Back to Top](#-cybercrime-legal-assistant)**
 
-Made with ❤️ for legal tech innovation
+**TEAM JUSTICE LEAGUE**
 
 </div>
